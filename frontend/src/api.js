@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/products"; // Sẽ thay bằng URL Render sau
+const API_URL = "https://project-cloudl2-backend.onrender.com/api/products"; // Sẽ thay bằng URL Render sau
 
 export const getProducts = async (search) => {
   const res = await axios.get(`${API_URL}?search=${search}`);

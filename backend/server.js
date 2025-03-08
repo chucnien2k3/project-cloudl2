@@ -11,7 +11,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-app.use(cors());
+app.use(cors({ origin: "https://project-cloudl2-frontend.onrender.com" }));
 app.use(bodyParser.json());
 
 // Lấy danh sách sản phẩm
