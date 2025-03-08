@@ -5,10 +5,14 @@ const bodyParser = require("body-parser");
 const { Pool } = require("pg");
 
 const app = express();
-const port = process.env.PORT || 5000;
+// Sử dụng cổng từ Render (process.env.PORT) thay vì cố định 5000
+const port = process.env.PORT;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // Cho phép kết nối SSL mà không cần chứng chỉ đầy đủ
+  },
 });
 
 app.use(cors({ origin: "https://project-cloudl2-frontend.onrender.com" }));
@@ -29,7 +33,7 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-// Thêm sản phẩm (không cần upload file)
+// Thêm sản phẩm
 app.post("/api/products", async (req, res) => {
   try {
     const { name, description, price } = req.body;
